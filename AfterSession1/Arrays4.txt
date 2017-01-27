@@ -1,0 +1,36 @@
+public class Solution {
+	// DO NOT MODIFY THE LIST
+	public int maximumGap(final List<Integer> a) {
+	    int max = -1;
+	    int n = a.size();
+	    
+	    if(n == 1){
+	        return 0;
+	    }
+	    
+	    int[] minFromLeft = new int[n];
+	    int[] maxFromRight = new int[n];
+	    
+	    
+	    minFromLeft[0] = a.get(0);
+	    for(int i = 1; i < n; i++){
+	        minFromLeft[i] = Math.min( a.get(i), minFromLeft[i - 1] );
+	    }
+	    
+	    maxFromRight[n -1] = a.get(n - 1);
+	    for(int i = n - 2; i >= 0; i--){
+	        maxFromRight[i] = Math.max( a.get(i), maxFromRight[i + 1]);
+	    }
+	    
+	    int i = 0, j = 0;
+	    while((i < n) && (j < n)){
+	        if(minFromLeft[i] <= maxFromRight[j]){
+	            max = Math.max(max, j - i);
+	            j++;
+	        }else{
+	            i++;
+	        }
+	    }
+        return max;	    
+	}
+}

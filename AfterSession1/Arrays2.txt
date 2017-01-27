@@ -1,0 +1,25 @@
+public class Solution {
+	public void setZeroes(ArrayList<ArrayList<Integer>> a) {
+	    int m = a.size();
+	    int n = a.get(0).size();
+	    boolean [] arrM = new boolean[m];
+	    boolean [] arrN = new boolean[n];
+	    
+	    for(int i = 0; i < m; i++){
+	        for(int j = 0; j < n; j++){
+	            if(a.get(i).get(j)==0){
+	                arrM[i] = true;
+	                arrN[j] = true;
+	            }
+	        }
+	    }
+	    
+	    for(int i = 0; i < m; i++){
+	        for(int j = 0; j < n; j++){
+	            if((arrM[i])||(arrN[j])){
+	                a.get(i).set(j,0);
+	            }
+	        }
+	    }
+	}
+}
