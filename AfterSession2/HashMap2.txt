@@ -1,0 +1,44 @@
+public class Solution {
+	public int maxPoints(ArrayList<Integer> a, ArrayList<Integer> b) {
+	    int n = a.size();
+	    int max = 0; 
+	    
+	    for(int i = 0; i < n; i ++){
+	        int x1 = a.get(i);
+	        int y1 = b.get(i);
+            
+	        HashMap<Double, Integer> map = new HashMap(); 
+	        
+	        int vertical = 0;
+	        int same = 1;
+	        
+	        for(int j = (i+1); j < n; j ++){
+	            int x2 =  a.get(j);
+	            int y2 =  b.get(j);
+	            
+	            if(x1 == x2){
+	                if(y1 == y2){
+	                    same++;
+	                }else{
+	                    vertical++;
+	                }
+	            }else{
+	                double slope = (y2 == y1)? 0.0: ((1.0* (y2 - y1) )/ (x2 - x1));
+	                if(map.containsKey(slope)){
+	                    map.put(slope, map.get(slope) + 1);
+	                }else{
+	                    map.put(slope, 1);
+	                }
+	            }
+	        }
+           for(Integer count:map.values()){
+                if((count + same) > max){
+                    max = count + same;
+                }
+            }
+            
+            max = Math.max(max, same + vertical);
+	    }
+	    return max;
+	}
+}
