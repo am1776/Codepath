@@ -1,0 +1,10 @@
+public class Solution {
+	// DO NOT MODIFY THE LIST
+	public int singleNumber(final List<Integer> a) {
+	    int num = 0;
+	    for(Integer n:a){
+	        num = num^n;
+	    }
+	    return num;
+	}
+}

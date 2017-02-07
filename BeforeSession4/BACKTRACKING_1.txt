@@ -1,0 +1,27 @@
+public class Solution {
+	public ArrayList<ArrayList<Integer>> combine(int n, int k) {
+	    if(n<k){
+	        return new ArrayList<ArrayList<Integer>>();
+	    }
+	    return helper(1,n,k);
+	}
+	
+	ArrayList<ArrayList<Integer>> helper(int start, int end, int k){
+	    if((start > end)||(k < 1)||((end - start + 1) < k)){
+	        return new ArrayList<ArrayList<Integer>>();
+	    }
+	    ArrayList<ArrayList<Integer>> listInclude = helper(start+1, end, k-1);
+	    for(ArrayList<Integer> l:listInclude){
+	        l.add(0, start);
+	    }
+	    if(listInclude.size() == 0){
+	        ArrayList<Integer> a = new ArrayList();
+	        a.add(start);
+	        listInclude.add(a);
+	    }
+	    
+	    ArrayList<ArrayList<Integer>> listNotInclude = helper(start+1, end, k);
+	    listInclude.addAll(listNotInclude);
+	    return listInclude;
+	}
+}

@@ -1,0 +1,42 @@
+public class Solution {
+	
+	HashMap<String,String> map;
+	public ArrayList<String> letterCombinations(String a) {
+	    map = new HashMap<String, String>();
+	    map.put("0","0");
+	    map.put("1","1");
+	    map.put("2","abc");
+	    map.put("3","def");
+	    map.put("4","ghi");
+	    map.put("5","jkl");
+	    map.put("6","mno");
+	    map.put("7","pqrs");
+	    map.put("8","tuv");
+	    map.put("9","wxyz");
+	    return helper(a, 0);
+	}
+	
+	ArrayList<String> helper(String a, int start){
+	    if(start == (a.length() - 1)){
+	        ArrayList<String> list = new ArrayList();
+	        String letters = map.get(a.substring(start,start+1));
+	        char[] charA = letters.toCharArray();
+	        for(char s:charA){
+	            list.add(String.valueOf(s));
+	        }
+	        return list;
+	    }
+	    String letters = map.get(a.substring(start,start+1));
+	    ArrayList<String> list2 = helper(a, start+1);
+	    ArrayList<String> newList = new ArrayList();
+	    char[] charA = letters.toCharArray();
+	    for(char s:charA){
+            int len = list2.size();
+            for(int i = 0; i < len; i++){
+                String s2 = list2.get(i);
+                newList.add(String.valueOf(s)+s2);
+            }
+	     }
+	     return newList;
+	}
+}
