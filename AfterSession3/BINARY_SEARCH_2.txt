@@ -1,0 +1,30 @@
+public class Solution {
+	public int pow(int x, int n, int d) {
+	   long ans = 1;
+	   long square = x;
+	   int m = n;
+	   
+	   if(x == 0){
+	       return 0;
+	   }
+	   if(n == 0){
+	       return 1;
+	   }
+	 
+	   while(n != 0){
+	       if((n % 2) == 1 ){
+	           ans = ans * square;
+	       }
+	       square = (square * square) % d;
+	       n = n/2;
+	       if(ans > d){
+	           ans = ans % d;
+	       }
+	   }
+	   Long l = ans;
+	   int ans2 = l.intValue();
+	   
+	   //return ans;
+	   return (x >= 0)||((m % 2 )== 0)?ans2:(d + ans2);
+	}
+}

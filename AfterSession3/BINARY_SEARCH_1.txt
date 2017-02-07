@@ -1,0 +1,30 @@
+public class Solution {
+	// DO NOT MODIFY THE LIST
+	public int search(final List<Integer> a, int b) {
+	    int len = a.size();
+	    return search1(a, 0, len -1, b);
+	}
+	
+	int search1(List<Integer> a, int start, int end, int b){
+	    int mid = (end + start)/2;
+	    if(start > end){
+	        return -1;
+	    }
+	    
+	    if(a.get(mid).equals(b)){
+	        return mid;
+	    }else if(a.get(mid) < a.get(end)){
+	        if((b >= a.get(mid))&&(b <= a.get(end))){
+	            return search1( a, mid + 1, end, b);
+	        } else{
+	            return search1(a, start, mid -1, b);
+	        }
+	    }else {
+	        if((b <= a.get(mid))&&(b >= a.get(start))){
+	            return search1( a, start, mid -1, b);
+	        }else{
+	            return search1(a, mid + 1, end, b);
+	        }
+	    }
+	}
+}
