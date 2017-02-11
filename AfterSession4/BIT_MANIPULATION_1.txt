@@ -1,0 +1,21 @@
+public class Solution {
+	// DO NOT MODIFY THE LIST
+	public int singleNumber(final List<Integer> a) {
+	  HashMap<Integer, Integer> hMap = new HashMap();
+	  
+	  for(int n:a){
+	      if(hMap.containsKey(n)){
+	          hMap.put(n, hMap.get(n) + 1);
+	      }else{
+	          hMap.put(n, 1);
+	      }
+	  }
+	  
+	  for(Integer n:hMap.keySet()){
+	      if(hMap.get(n) == 1){
+	          return n;
+	      }
+	  }
+	  return -1;
+	}
+}

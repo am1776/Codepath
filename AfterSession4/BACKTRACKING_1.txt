@@ -1,0 +1,26 @@
+public class Solution {
+	public ArrayList<Integer> grayCode(int a) {
+	    ArrayList<Integer> list = new ArrayList<Integer>();
+	    if(a == 0){
+	        return list;
+	    }else if(a==1){
+	        list.add(0);
+	        list.add(1);
+	        return list;
+	    }
+	    
+	    List<Integer> list1 = grayCode(a-1);
+	    
+	    list.addAll(list1);
+	    
+	    Collections.reverse(list1);
+	    int len = list1.size();
+	    Integer k = (int)Math.pow(2.0, new Double((a - 1)));
+	    for(int i = 0; i < len; i++){
+	        int val = list1.get(i) + k.intValue();
+	        list1.set(i, val);
+	    }
+	    list.addAll(list1);
+	    return list;
+	}
+}
